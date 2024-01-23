@@ -9,7 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.11"
+    "ant-design-vue": "^4.0.0-rc.6",
+    "antd": "^5.13.2",
+    "axios": "^1.6.2",
+    "bootstrap": "^5.2.3",
+    "js-cookie": "^3.0.5",
+    "vue": "^3.3.11",
+    "vue-router": "^4.2.5",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
