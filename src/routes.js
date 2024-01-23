@@ -7,5 +7,9 @@ export const routes = [
         path : '/login',
         name : 'Login',
         component : () => import('./components/auth/WebLogin.vue')
+    }, { 
+        path: '/signup',
+        name : 'Signup',
+        component : () => import('./components/auth/WebSignup.vue')
     }
 ]

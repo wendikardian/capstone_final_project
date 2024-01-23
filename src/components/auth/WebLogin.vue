@@ -11,16 +11,11 @@
                     <div class="card p-3">
                         <h3>Login</h3>
                         <p>Enter your detail below</p>
-                        <div class="my-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="name@example.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="passwords" placeholder="insert your password">
-                        </div>
-
+                        <base-input type="email" label="Email Address" identity="email" placeholder="name@example.com"
+                            v-model="loginData.email">
+                        </base-input>
+                        <base-input type="password" label="Password" identity="password" placeholder="insert your password"
+                            v-model="loginData.password" ></base-input>
                         <!-- add button login -->
                         <div class="mt-5 w-100 d-flex justify-content-center">
 
@@ -33,3 +28,23 @@
         </div>
     </main>
 </template>
+
+<script setup>
+import BaseInput from '../ui/BaseInput.vue';
+import BaseButton from '../ui/BaseButton.vue';
+
+import { reactive } from "vue";
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
+
+const store = useStore();
+const router = useRouter();
+
+const loginData = reactive({
+    email: '',
+    password: '',
+    isLogin: false
+})
+
+</script>
