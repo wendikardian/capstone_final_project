@@ -1,7 +1,7 @@
 <template>
     <search-menu></search-menu>
-    <!-- <signup-menu></signup-menu> -->
-    <profile-menu></profile-menu>
+    <signup-menu></signup-menu>
+    <!-- <profile-menu></profile-menu> -->
 </template>
 
 
