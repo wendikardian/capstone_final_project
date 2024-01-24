@@ -18,9 +18,7 @@
                                 placeholder="insert your password" v-model="loginData.password"></base-input>
                             <!-- add button login -->
                             <div class="mt-5 w-100 d-flex justify-content-center">
-
-                                <a href="profile.html" class="text-white btn btn-success w-100">Continue</a>
-
+                                <base-button class="login w-100 my-3">Register </base-button>
                             </div>
                         </div>
                     </div>
