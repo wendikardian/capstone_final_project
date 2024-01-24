@@ -1,27 +1,28 @@
 <template>
-    <div :class="[{'input-wrapper' :type == 'file'}, 'my-2']">
+    <div :class="[{ 'input-wrapper': type == 'file' }, 'my-2']">
         <label :for="identity" class="fw-semibold">
             {{ label }} <span style="color: #cb3a31">*</span>
             <slot></slot>
         </label>
     </div>
-        <div class="my-2">
-            <input :type="type" :class="[{ 'd-none': isImage, 'file-input': type == 'file' }, 'form-control']" :id="identity" :placeholder="placeholder"
-            @change="$emit('change', $event)"
-            @keyup="$emit('keyInput', $event.target.value)"
-            :value="modelValue"
-            @input="$emit('update:modelValue', $event.target.value)"
-            >
-        </div>
+    <div class="my-2 input-wrapper-pw">
+        <input :type="showPassword ? 'text' : 'password'"
+            :class="[{ 'd-none': isImage, 'file-input': type == 'file' }, 'form-control']" :id="identity"
+            :placeholder="placeholder" @change="$emit('change', $event)" @keyup="$emit('keyInput', $event.target.value)"
+            :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
+        <i class="fa-solid fa-eye" v-if="type === 'password'" @click="showPassword = !showPassword"></i>
+    </div>
 </template>
 
 <script setup>
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-
+import {ref} from 'vue';
 const store = useStore();
 const router = useRouter();
 
+// create ref showPassword
+const showPassword = ref(false);
 
 defineProps({
     type: { type: String, require: true },
@@ -50,6 +51,18 @@ defineProps({
     margin-bottom: 10px;
     transition: all 1s ease;
 }
+.input-wrapper-pw {
+  position: relative;
+}
+
+.input-wrapper-pw i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 
 .input-wrapper:hover {
     background-color: #b9bec3;
