@@ -6,25 +6,27 @@
         </label>
     </div>
     <div class="my-2 input-wrapper-pw">
-        <input :type="showPassword ? 'text' : 'password'"
-            :class="[{ 'd-none': isImage, 'file-input': type == 'file' }, 'form-control']" :id="identity"
+        <input :type="localType" :class="[{ 'd-none': isImage, 'file-input': type == 'file' }, 'form-control']" :id="identity"
             :placeholder="placeholder" @change="$emit('change', $event)" @keyup="$emit('keyInput', $event.target.value)"
             :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
-        <i class="fa-solid fa-eye" v-if="type === 'password'" @click="showPassword = !showPassword"></i>
+        <i class="fa-solid fa-eye" v-if="type === 'password'" @click="changeType"></i>
     </div>
 </template>
 
 <script setup>
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import {ref} from 'vue';
+import { ref } from 'vue';
+// get props data
+
+
 const store = useStore();
 const router = useRouter();
 
 // create ref showPassword
 const showPassword = ref(false);
 
-defineProps({
+const props = defineProps({
     type: { type: String, require: true },
     label: { type: String, require: true },
     identity: { type: String, require: true },
@@ -32,6 +34,17 @@ defineProps({
     isImage: { type: Boolean, require: false, default: false },
     modelValue: { type: [String, Number] }
 })
+
+const localType = ref(props.type);
+
+const changeType = () => {
+    if (localType.value == 'password') {
+        localType.value = 'text';
+    } else {
+        // change type from props to password
+        localType.value = 'password';
+    }
+}
 
 </script>
 
@@ -51,16 +64,17 @@ defineProps({
     margin-bottom: 10px;
     transition: all 1s ease;
 }
+
 .input-wrapper-pw {
-  position: relative;
+    position: relative;
 }
 
 .input-wrapper-pw i {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 
